@@ -15,7 +15,7 @@ rfc = data['model']
 x = data['x']
 
 def show_page():
-    st.write("<h1 style='text-align: center; color: black;'>مدل تشخیص آنفولانزا</h1>", unsafe_allow_html=True)
+    st.write("<h1 style='text-align: center; color: blue;'>مدل تشخیص آنفولانزا</h1>", unsafe_allow_html=True)
     st.write("<h2 style='text-align: center; color: gray;'>علائم خود را وارد کنید</h2>", unsafe_allow_html=True)
     st.write("<h4 style='text-align: center; color: gray;'>True = بله , False = خیر</h4>", unsafe_allow_html=True)
     
