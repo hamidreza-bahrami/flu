@@ -84,9 +84,13 @@ def show_page():
     
     button = st.button('معاینه و تشخیص بیماری')
     if button:
-        x = np.array([[kid, adult, Symptom_speed, Fever, Aches, Chills, weakness, Sneezing,
-                       Chest_discomfort, Dry_cough, Stuffy_nose, Sore_throat, Headache, trouble_breathing,
-                       Bluish_lips_face, Ribs_pulling_each_breath, Chest_pain, Severe_muscle_pain, Dehydration, Worsening_conditions]])
+        with st.chat_message("assistant"):
+                with st.spinner('''درحال بررسی لطفا صبور باشید'''):
+                    time.sleep(3)
+                    st.success(u'\u2713''تحلیل انجام شد')
+                    x = np.array([[kid, adult, Symptom_speed, Fever, Aches, Chills, weakness, Sneezing,
+                                   Chest_discomfort, Dry_cough, Stuffy_nose, Sore_throat, Headache, trouble_breathing,
+                                   Bluish_lips_face, Ribs_pulling_each_breath, Chest_pain, Severe_muscle_pain, Dehydration, Worsening_conditions]])
         x = x.astype(float)
 
         y = rfc.predict(x)
