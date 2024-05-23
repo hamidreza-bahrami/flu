@@ -116,9 +116,9 @@ def show_page():
             text3 = 'Based on my analysis, you have got Flu'
             text4 = 'Please visit a doctor as soon as possible'
             def stream_data1():
-            for word in text1.split(" "):
-                yield word + " "
-                time.sleep(0.09)
+                for word in text1.split(" "):
+                    yield word + " "
+                    time.sleep(0.09)
             st.write_stream(stream_data1)
             def stream_data2():
                 for word in text2.split(" "):
