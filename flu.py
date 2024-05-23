@@ -134,7 +134,7 @@ def show_page():
                 for word in text4.split(" "):
                     yield word + " "
                     time.sleep(0.09)
-            st.write_stream(stream_data3)
+            st.write_stream(stream_data4)
 
         elif y == False:
             text1 = 'بر اساس تحلیل من ، شما به سرماخوردگی مبتلا شده اید'
