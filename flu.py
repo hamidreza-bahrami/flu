@@ -4,6 +4,7 @@ import pickle
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 import time
+st.set_page_config(page_title='تشخیص آنفولانزا - RoboAi', layout='centered', page_icon='🤖')
 
 def load_model():
     with open('saved.pkl', 'rb') as file:
@@ -21,6 +22,20 @@ def show_page():
     st.write("<h4 style='text-align: center; color: gray;'>True = بله , False = خیر</h4>", unsafe_allow_html=True)
     st.write("<h4 style='text-align: center; color: gray;'>Robo-Ai.ir طراحی شده توسط</h4>", unsafe_allow_html=True)
     st.link_button("Robo-Ai بازگشت به", "https://robo-ai.ir")
+    with st.sidebar:
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            st.write(' ')
+        with col2:
+            st.image('img.png')
+        with col3:
+            st.write(' ')
+        st.divider()
+        st.write("<h4 style='text-align: right; color: gray;'>تخمین قیمت نقره با دقت 98 درصد</h>", unsafe_allow_html=True)
+        st.write("<h4 style='text-align: right; color: gray;'>ساخته شده با جمع آوری داده 15 سال بازار سهام</h>", unsafe_allow_html=True)
+        st.divider()
+        st.write('Developed & Designed by')
+        st.write('Hamidreza Bahrami')
     
     kid = (True , False)
     kid = st.selectbox('سن زیر 20 سال', kid)
@@ -87,7 +102,7 @@ def show_page():
     if button:
         with st.chat_message("assistant"):
                 with st.spinner('''درحال بررسی لطفا صبور باشید'''):
-                    time.sleep(3)
+                    time.sleep(2)
                     st.success(u'\u2713''تحلیل انجام شد')
                     x = np.array([[kid, adult, Symptom_speed, Fever, Aches, Chills, weakness, Sneezing,
                                    Chest_discomfort, Dry_cough, Stuffy_nose, Sore_throat, Headache, trouble_breathing,
@@ -96,11 +111,42 @@ def show_page():
 
         y = rfc.predict(x)
         if y == True:
-            st.write("<h4 style='text-align: right; color: gray;'>بر اساس داده های وارد شده، شما به آنفولانزا مبتلا شده اید</h4>", unsafe_allow_html=True)
-            st.write("<h5 style='text-align: right; color: gray;'>برای درمان به پزشک مراجعه کنید</h5>", unsafe_allow_html=True)
+            text1 = 'بر اساس تحلیل من ، شما به آنفولانزا مبتلا شده اید'
+            text2 = 'برای درمان به پزشک مراجعه کنید'
+            text3 = 'Based on my analysis, you have got Flu'
+            text4 = 'Please visit a doctor as soon as possible'
+            def stream_data1():
+            for word in text1.split(" "):
+                yield word + " "
+                time.sleep(0.09)
+            st.write_stream(stream_data1)
+            def stream_data2():
+                for word in text2.split(" "):
+                    yield word + " "
+                    time.sleep(0.09)
+            st.write_stream(stream_data2)
+            def stream_data3():
+                for word in text3.split(" "):
+                    yield word + " "
+                    time.sleep(0.09)
+            st.write_stream(stream_data3)
+            def stream_data4():
+                for word in text4.split(" "):
+                    yield word + " "
+                    time.sleep(0.09)
+            st.write_stream(stream_data3)
 
         elif y == False:
-            st.write("<h4 style='text-align: right; color: gray;'>بر اساس داده های وارد شده، شما به سرماخوردگی مبتلا شده اید</h4>", unsafe_allow_html=True)
-
-
+            text1 = 'بر اساس تحلیل من ، شما به سرماخوردگی مبتلا شده اید'
+            text2 = 'Based on my analysis, you have got cold'
+            def stream_data1():
+                for word in text1.split(" "):
+                    yield word + " "
+                    time.sleep(0.09)
+            st.write_stream(stream_data1)
+            def stream_data2():
+                for word in text2.split(" "):
+                    yield word + " "
+                    time.sleep(0.09)
+            st.write_stream(stream_data2)
 show_page()
