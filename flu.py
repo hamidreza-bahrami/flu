@@ -4,6 +4,7 @@ import pickle
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 import time
+
 st.set_page_config(page_title='تشخیص آنفولانزا - RoboAi', layout='centered', page_icon='🤖')
 
 def load_model():
@@ -17,7 +18,7 @@ rfc = data['model']
 x = data['x']
 
 def show_page():
-    st.write("<h1 style='text-align: center; color: blue;'>مدل تشخیص آنفولانزا</h1>", unsafe_allow_html=True)
+    st.write("<h1 style='text-align: center; color: blue;'>تشخیص آنفولانزا با هوش مصنوعی</h1>", unsafe_allow_html=True)
     st.write("<h2 style='text-align: center; color: gray;'>علائم خود را وارد کنید</h2>", unsafe_allow_html=True)
     st.write("<h4 style='text-align: center; color: gray;'>True = بله , False = خیر</h4>", unsafe_allow_html=True)
     st.write("<h4 style='text-align: center; color: gray;'>Robo-Ai.ir طراحی شده توسط</h4>", unsafe_allow_html=True)
@@ -31,8 +32,8 @@ def show_page():
         with col3:
             st.write(' ')
         st.divider()
-        st.write("<h4 style='text-align: right; color: gray;'>تخمین قیمت نقره با دقت 98 درصد</h>", unsafe_allow_html=True)
-        st.write("<h4 style='text-align: right; color: gray;'>ساخته شده با جمع آوری داده 15 سال بازار سهام</h>", unsafe_allow_html=True)
+        st.write("<h4 style='text-align: right; color: gray;'>تشخیص آنفولانزا از سرماخوردگی با دقت 98 درصد</h>", unsafe_allow_html=True)
+        st.write("<h4 style='text-align: right; color: gray;'>ساخته شده با اطلاعات 420 کیس بیمار و سالم</h>", unsafe_allow_html=True)
         st.divider()
         st.write('Developed & Designed by')
         st.write('Hamidreza Bahrami')
@@ -96,6 +97,8 @@ def show_page():
 
     Worsening_conditions = (True , False)
     Worsening_conditions = st.selectbox('علائم مزمن', Worsening_conditions)
+
+    text = st.text_area('وضعیت جسمی خود را در یک پاراگراف شرح دهید',height=None,max_chars=None,key=None)
     
     
     button = st.button('معاینه و تشخیص بیماری')
